@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.ReservationInfo" table="REVRINFO">	
+		<composite-id>			
+			<key-property name="reservationId" column="REVRRVID" type="string"/>	
+			<key-property name="campMapID" column="REVRMPID" type="int"/>					
+			<key-property name="siteNo" column="REVRSTNO" type="int"/>				
+			<key-property name="arrivalDate" column="REVRAVDT" type="date"/>
+		</composite-id>
+		<property generated="never" lazy="false" name="endDate" type="date">
+			<column name="REVREDDT" not-null="true"/>		
+		</property>	
+		
+		<property generated="never" lazy="false" name="userId" type="string">
+			<column name="REVRURID" not-null="false"/>
+		</property>		
+		<property generated="never" lazy="false" name="reservedEmail" type="string">
+			<column name="REVREMAL" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="reservedLName" type="string">
+			<column name="REVRLTNM" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedFName" type="string">
+			<column name="REVRFTNM" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedPhone" type="string">
+			<column name="REVRPHON" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedAddress" type="string">
+			<column name="REVRADDR" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedCity" type="string">
+			<column name="REVRCITY" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedProvince" type="string">
+			<column name="REVRPROV" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedPost" type="string">
+			<column name="REVRPOST" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="reservedNight" type="int">
+			<column name="REVRNIGT" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="reservedPartySize" type="int">
+			<column name="REVRPTSZ" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="extraService" type="string">
+			<column name="REVREXSV" not-null="false"/>
+		</property>
+		<property generated="never" lazy="false" name="statusId" type="string">
+			<column name="REVRSTID" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="resservationType" type="string">
+			<column name="REVRTYPE" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="totalCost" type="double">
+			<column name="REVRTOCT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="extraPeopleCost" type="double">
+			<column name="REVREXCT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="REVRINDT" not-null="true"/>
+		</property>        
+	</class>
+</hibernate-mapping>

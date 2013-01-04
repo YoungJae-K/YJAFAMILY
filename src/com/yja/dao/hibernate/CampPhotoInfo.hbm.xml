@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.CampPhotoInfo" table="CAMPPOTO">
+	
+	<!--
+		<composite-id>
+			<key-many-to-one name="campPhotId" class="com.yja.dao.model.CampMapInfo">
+				<column name="CAMPPRID" not-null="true" />
+			</key-many-to-one>			
+			<key-property name="siteNo" column="CAMPSTNO" type="int"/>
+		</composite-id>
+	 -->	
+		<id name="campPhotId" type="int">
+            <column name="CAMPPRID" />
+            <generator class="identity" />
+        </id>
+         <property generated="never" lazy="false" name="campMapID" type="int">
+			<column name="CAMPMPID" not-null="true"/>
+		</property>
+        <property generated="never" lazy="false" name="siteNo" type="int">
+			<column name="CAMPSTNO" not-null="true"/>
+		</property>	
+       	<property generated="never" lazy="false" name="campPhotoImage" type="string">
+			<column name="CAMPFLNM" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="CAMPINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="CAMPUPDT" not-null="true"/>		
+		</property>	
+	</class>
+</hibernate-mapping>

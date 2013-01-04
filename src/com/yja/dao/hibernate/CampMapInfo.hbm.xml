@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.CampMapInfo" table="CPMPINFO">
+		<id name="campMapID" type="int">
+			<column name="CPMPMPID" not-null="true"/>			
+		</id>		
+		<property generated="never" lazy="false" name="campImage" type="string">
+			<column name="CPMPFLNM" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="CPMPINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="CPMPUPDT" not-null="true"/>		
+		</property>
+		<property generated="never" lazy="false" name="campUseFlg" type="int">
+			<column name="CPMPUFLG" not-null="true"/>		
+		</property>
+		<!--  	
+		<bag name="siteMapLocationList" table="STMPLOCT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STMPPRID" not-null="true"/>
+            </key>
+            <one-to-many class="com.yja.dao.model.SiteMapLocation"/>
+        </bag>
+        -->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.ReservationTypeMast" table="RETPMAST">
+		<id name="reservationTypeID" type="int">
+			<column name="RETPREID" not-null="true"/>			
+		</id>		
+		<property generated="never" lazy="false" name="reservationTypeDesc" type="string">
+			<column name="RETPDESC" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="RETPINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="RETPUPDT" not-null="true"/>		
+		</property>
+	</class>
+</hibernate-mapping>

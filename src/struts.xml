@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.custom.i18n.resources" value="com/yja/resources/global" />
+    <constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+    <constant name="struts.objectFactory.spring.autoWire" value="type" />
+        
+    <!-- Common treatment, such as error or Exception -->
+    <package name="yja" namespace="/" extends="struts-default">
+    	<global-results>
+            <result name="errHandler" type="chain">
+                <param name="actionName">errorProcessor</param>
+            </result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="errHandler" />
+        </global-exception-mappings>
+        <action name="errorProcessor" class="com.yja.exception.YJAExceptionProcessor">
+            <result name="error">pages/YJAFamilyError.jsp</result>
+        </action>
+        <action name="throwExceptions" class="com.yja.exception.YJAExceptionProcessor">
+            <result name="success">NewFile.html</result>
+        </action>	   
+	</package>
+	
+	<package name="image" namespace="/" extends="struts-default">
+	 	<result-types>
+			<result-type name="YJAImageBytesResult" class="com.yja.action.image.YJAImageBytesResult" />
+		</result-types>
+	    <action name="YJADisplayImgAction" class="com.yja.action.image.YJADisplayImgAction">			
+			<result name="success" type="YJAImageBytesResult"></result>
+		</action>
+	</package>
+
+	<include file="struts-init.xml" />
+    <include file="struts-userInfo.xml" />
+    <include file="struts-gallery.xml" />
+    <include file="struts-reserve.xml" />
+    <include file="struts-modify.xml" />
+    <include file="struts-siteinfo.xml" />
+    <include file="struts-email.xml" />
+</struts>

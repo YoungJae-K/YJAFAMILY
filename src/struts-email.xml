@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="email" namespace="/" extends="yja">
+	
+		<interceptors>
+			<interceptor-stack name="emailStack">
+				<interceptor-ref name="exception" />			
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="includeMethods">sendExecute</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="YJAS006Init" class="com.yja.action.YJAS006Action">
+			<interceptor-ref name="emailStack"></interceptor-ref>				
+			<result name="success">pages/YJAS006.jsp</result>
+		</action>
+		
+		<action name="YJAS006Send" class="com.yja.action.YJAS006Action" method="sendExecute">
+			<result name="success">YJAS001Init</result>
+			<result name="input">pages/YJAS006.jsp</result>
+		</action>
+		
+		<action name="YJAS006GoLogin" class="com.yja.action.YJAS006Action" method="goLoginExecute">
+			<interceptor-ref name="emailStack"></interceptor-ref>
+			<result name="success" type="redirectAction">	
+				<param name="actionName">YJAS007Init</param>
+	        	<param name="currentScreen">${currentScreen}</param>
+        	</result>        	
+		</action>
+		<action name="YJAS006BackInit" class="com.yja.action.YJAS006Action" method="backInitExecute">
+			<interceptor-ref name="emailStack"></interceptor-ref>			
+			<result name="success">pages/YJAS006.jsp</result>
+		</action>
+			
+	</package>
+</struts>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="userInfo" namespace="/" extends="yja">
+
+		<interceptors>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="exception" />			
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">execute, logoutExecute, userIdCheckExecute</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="YJAS007Init" class="com.yja.action.YJAS007Action">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">pages/YJAS007.jsp</result>
+		</action>
+
+		<action name="YJAS007Login" class="com.yja.action.YJAS007Action"
+			method="loginExecute">
+			<result name="success" type="redirect">${currentScreen}</result>
+			<result name="fails">pages/YJAS007.jsp</result>
+			<result name="input">pages/YJAS007.jsp</result>
+		</action>
+
+		<action name="YJAS007Logout" class="com.yja.action.YJAS007Action"
+			method="logoutExecute">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirect">YJAS001Init</result>
+		</action>
+
+		<action name="YJAS008Init" class="com.yja.action.YJAS008Action">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">pages/YJAS008.jsp</result>
+		</action>
+
+		<action name="YJAS008Register" class="com.yja.action.YJAS008Action"
+			method="registerExecute">
+			<result name="success" type="redirect">${currentScreen}</result>
+			<result name="input">pages/YJAS008.jsp</result>
+		</action>
+
+		<action name="YJAS008UserIdCheck" class="com.yja.action.YJAS008Action"
+			method="userIdCheckExecute">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">pages/YJAS008.jsp</result>
+			<result name="input">pages/YJAS008.jsp</result>
+		</action>
+
+	</package>
+</struts>

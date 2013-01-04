@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="modify" namespace="/" extends="yja">
+		<action name="YJAS005Init" class="com.yja.action.YJAS005Action">
+			<result name="success">pages/YJAS005.jsp</result>
+		</action>
+		
+		<action name="YJAS005Cancel" class="com.yja.action.YJAS005Action" method="cancelExecute">
+			<result name="success">pages/YJAS005.jsp</result>
+		</action>
+		
+		<action name="YJAS005Search" class="com.yja.action.YJAS005Action" method="searchExecute">
+			<result name="success">pages/YJAS005.jsp</result>
+			<result name="input">pages/YJAS005.jsp</result>
+		</action>
+				
+		<action name="YJAS005GoLogin" class="com.yja.action.YJAS005Action" method="goLoginExecute">			
+			<result name="success" type="redirectAction">	
+				<param name="actionName">YJAS007Init</param>
+	        	<param name="currentScreen">${currentScreen}</param>
+        	</result>        	
+		</action>
+		<action name="YJAS005BackInit" class="com.yja.action.YJAS005Action" method="backInitExecute">
+			<result name="success">pages/YJAS005.jsp</result>
+		</action>
+		
+	</package>
+</struts>
+
+

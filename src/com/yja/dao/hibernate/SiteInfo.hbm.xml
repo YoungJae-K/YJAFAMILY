@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.SiteInfo" table="SITEINFO">		
+		<composite-id>	
+			<key-property name="campMapID" column="SITEMPID" type="int"/>					
+			<key-property name="siteNo" column="SITESTNO" type="int"/>
+		</composite-id>
+		
+		<!-- many to one query -->
+		<many-to-one name="reservationTypeMast" class="com.yja.dao.model.ReservationTypeMast"
+			column="SITEREID" cascade="all"></many-to-one>		
+		<many-to-one name="serviceTypeMast" class="com.yja.dao.model.ServiceTypeMast"
+			column="SITESVID" cascade="all"></many-to-one>
+			
+		<bag name="equipmentList" table="STEQBRDG" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STEQMPID" not-null="true" />
+                <column name="STEQSTNO" not-null="true" />
+            </key>
+            <many-to-many column="STEQEQID" class="com.yja.dao.model.EquipmentMast" />
+        </bag>        	
+					
+		<property generated="never" lazy="false" name="allowedPartySize" type="int">
+			<column name="SITEALSZ" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="allowedExtraPartySize" type="int">
+			<column name="SITEALEP" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="siteLength" type="double">
+			<column name="SITELNTH" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="siteWidth" type="double">
+			<column name="SITEWIDH" not-null="true"/>
+		</property>		
+		<property generated="never" lazy="false" name="allowedOnParking" type="int">
+			<column name="SITEONPK" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="allowedOffParking" type="int">
+			<column name="SITEOFPK" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="siteCost" type="double">
+			<column name="SITEUTCT" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="extraPeopleCost" type="double">
+			<column name="SITEEPCT" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="siteLeftLoct" type="int">
+			<column name="SITELEFT" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="siteTopLoct" type="int">
+			<column name="SITELTOP" not-null="true"/>
+		</property>	
+				
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="SITEINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="SITEUPDT" not-null="true"/>		
+		</property>	
+		
+		<bag name="campPhotoInfoList" table="CAMPPOTO" inverse="true" lazy="true" fetch="select">
+            <key>
+            	 <column name="CAMPMPID" not-null="true" />
+                <column name="CAMPSTNO" not-null="true"/>                
+            </key>
+            <one-to-many class="com.yja.dao.model.CampPhotoInfo"/>
+        </bag>
+        
+	</class>
+</hibernate-mapping>

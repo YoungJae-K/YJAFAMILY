@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.EquipmentMast" table="EQIPMAST">
+		<id name="equipmentTypeID" type="int">
+			<column name="EQIPEQID" not-null="true"/>			
+		</id>		
+		<property generated="never" lazy="false" name="equipmentTypeDesc" type="string">
+			<column name="EQIPDESC" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="EQIPINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="EQIPUPDT" not-null="true"/>		
+		</property>
+	</class>
+</hibernate-mapping>

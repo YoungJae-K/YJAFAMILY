@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="siteInfo" namespace="/" extends="yja">
+		<action name="YJAP001Init" class="com.yja.action.YJAP001Action">
+			<result name="success">pages/YJAP001.jsp</result>
+		</action>
+		<action name="YJAP001Select" class="com.yja.action.YJAP001Action" method="selectExecute">
+			<result name="success" type="redirectAction">	
+				<param name="actionName">YJAS003BackInit</param>	        	
+        	</result>
+		</action>	
+	</package>
+</struts>
+
+

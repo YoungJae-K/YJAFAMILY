@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.UserInfo" table="USERINFO">
+		<id name="userId" type="java.lang.String">
+			<column length="50" name="USERURID" not-null="true"/>			
+		</id>
+		
+		<property generated="never" lazy="false" name="userPassword" type="string">
+			<column length="30" name="USERPWSD" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userFName" type="string">
+			<column length="30" name="USERFTNM" not-null="true"/>
+		</property>
+		
+		<property generated="never" lazy="false" name="userLName" type="string">
+			<column length="30" name="USERLTNM" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userAddr" type="string">
+			<column length="45" name="USERADDR" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userCity" type="string">
+			<column length="20" name="USERCITY" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userProv" type="string">
+			<column length="2" name="USERPROV" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userPost" type="string">
+			<column length="6" name="USERPOST" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="deleteFlg" type="string">
+			<column length="1" name="USERDFLG" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="userAuthority" type="string">
+			<column length="1" name="USERAUTH" not-null="true"/>
+		</property>
+		
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="USERINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="USERUPDT" not-null="true"/>		
+		</property>
+	</class>
+</hibernate-mapping>

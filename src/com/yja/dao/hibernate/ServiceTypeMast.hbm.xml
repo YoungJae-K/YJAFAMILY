@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yja.dao.model.ServiceTypeMast" table="SVTPMAST">
+		<id name="serviceTypeID" type="int">
+			<column name="SVTPSVID" not-null="true"/>			
+		</id>		
+		<property generated="never" lazy="false" name="serviceTypeDesc" type="string">
+			<column name="SVTPDESC" not-null="true"/>
+		</property>	
+		<property generated="never" lazy="false" name="insertDate" type="date">
+			<column name="SVTPINDT" not-null="true"/>
+		</property>
+		<property generated="never" lazy="false" name="updateDate" type="date">
+			<column name="SVTPUPDT" not-null="true"/>		
+		</property>
+	</class>
+</hibernate-mapping>

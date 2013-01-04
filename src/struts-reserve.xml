@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="reserve" namespace="/" extends="yja">
+		<interceptors>
+			<interceptor-stack name="reserveStack">
+				<interceptor-ref name="exception" />			
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="includeMethods">confirmExecute</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="YJAS003Init" class="com.yja.action.YJAS003Action">
+			<result name="success">pages/YJAS003.jsp</result>
+		</action>
+		
+		<action name="YJAS003BackInit" class="com.yja.action.YJAS003Action" method="backInitExecute">
+			<result name="success">pages/YJAS003.jsp</result>
+		</action>
+				
+		<action name="YJAS003Search" class="com.yja.action.YJAS003Action" method="searchExecute">
+			<result name="success">pages/YJAS003.jsp</result>
+		</action>
+		
+		<action name="YJAS003Delete" class="com.yja.action.YJAS003Action" method="deleteExecute">
+			<result name="success">pages/YJAS003.jsp</result>
+		</action>
+		
+		<action name="YJAS003DeleteAll" class="com.yja.action.YJAS003Action" method="deleteAllExecute">
+			<result name="success">pages/YJAS003.jsp</result>
+		</action>
+		
+		<action name="YJAS003Detail" class="com.yja.action.YJAS003Action" method="detailExecute">
+			<result name="success" type="chain">	
+				<param name="actionName">YJAS004Init</param>	        	
+        	</result>
+		</action>
+		
+		<action name="YJAS004Init" class="com.yja.action.YJAS004Action">
+			<interceptor-ref name="reserveStack"></interceptor-ref>
+			<result name="success">pages/YJAS004.jsp</result>
+		</action>
+		
+		<action name="YJAS004Confirm" class="com.yja.action.YJAS004Action" method="confirmExecute">
+			<result name="success" type="redirectAction">	
+				<param name="actionName">YJAS005Init</param>
+	        	<param name="reservationId">${reservationId}</param>
+        	</result>
+        	<result name="input">pages/YJAS004.jsp</result>      	
+		</action>		
+		
+		<action name="YJAS004Back" class="com.yja.action.YJAS004Action" method="backExecute">
+			<interceptor-ref name="reserveStack"></interceptor-ref>			
+			<result name="success" type="chain">	
+				<param name="actionName">YJAS003BackInit</param>				
+	        	
+        	</result>
+		</action>
+		<action name="YJAS004GoLogin" class="com.yja.action.YJAS004Action" method="goLoginExecute">
+			<interceptor-ref name="reserveStack"></interceptor-ref>
+			<result name="success" type="redirectAction">	
+				<param name="actionName">YJAS007Init</param>
+	        	<param name="currentScreen">${currentScreen}</param>
+        	</result>        	
+		</action>
+		<action name="YJAS004BackInit" class="com.yja.action.YJAS004Action" method="backInitExecute">
+			<interceptor-ref name="reserveStack"></interceptor-ref>
+			<result name="success">pages/YJAS004.jsp</result>
+		</action>
+		
+	</package>
+</struts>
+
+

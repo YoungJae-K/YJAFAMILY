@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	This validation is for the screen to add new user information.	
+	Created by YOUNGJAE KIM.
+ -->
+<!DOCTYPE validators PUBLIC 
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+        
+<validators>
+    <field name="userId">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>           
+            <message>
+                ${getText("errors.required", {getText("screen.userId")})}
+            </message>
+        </field-validator>
+        <field-validator type="email">
+            <message>
+                ${getText("errors.invalid", {getText("screen.userId")})}
+            </message>
+        </field-validator>
+    </field>
+    <field name="userPassword">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userPassword")})}
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="reUserPassword">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.reUserPassword")})}
+            </message>
+        </field-validator>
+        
+        <field-validator type="fieldexpression">
+			<param name="expression">(userPassword == reUserPassword)</param>
+			<message key="errors.password"/>
+		</field-validator>       
+    </field>
+    
+    <field name="userFName">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userFName")})}
+            </message>
+        </field-validator>
+    </field>
+    <field name="userLName">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userLName")})}
+            </message>
+        </field-validator>
+    </field>
+    <field name="userAddr">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userAddr")})}
+            </message>
+        </field-validator>
+    </field>
+    <field name="userCity">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userCity")})}
+            </message>
+        </field-validator>
+    </field>
+     <field name="userProv">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userProv")})}
+            </message>
+        </field-validator>
+    </field>
+    <field name="userPost">
+    	 <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                ${getText("errors.required", {getText("screen.userPost")})}
+            </message>
+        </field-validator>
+        <field-validator type="regex">
+           <param name="expression"><![CDATA[([a-zA-Z][0-9][a-zA-Z][0-9][a-zA-Z][0-9])]]></param>
+           <message>
+                ${getText("errors.invalid", {getText("screen.userPost")})}
+           </message>
+        </field-validator>
+    </field>
+</validators>

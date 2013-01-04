@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Set Action Class.. -->
+	<bean id="YJAP001Action" class="com.yja.action.YJAP001Action">
+		<property name="yjaService" ref="YJAP001Service" />
+	</bean>
+	<bean id="YJAS001Action" class="com.yja.action.YJAS001Action">
+		<property name="yjaService" ref="YJAS001Service" />
+	</bean>
+	<bean id="YJAS002Action" class="com.yja.action.YJAS002Action">
+		<property name="yjaService" ref="YJAS002Service" />
+	</bean>
+	<bean id="YJAS003Action" class="com.yja.action.YJAS003Action">
+		<property name="yjaService" ref="YJAS003Service" />
+	</bean>
+	<bean id="YJAS004Action" class="com.yja.action.YJAS004Action">
+		<property name="yjaService" ref="YJAS004Service" />
+	</bean>
+	<bean id="YJAS005Action" class="com.yja.action.YJAS005Action">
+		<property name="yjaService" ref="YJAS005Service" />
+	</bean>
+	<bean id="YJAS006Action" class="com.yja.action.YJAS006Action">
+		<property name="yjaService" ref="YJAS006Service" />
+	</bean>
+	<bean id="YJAS007Action" class="com.yja.action.YJAS007Action">
+		<property name="yjaService" ref="YJAS007Service" />
+	</bean>
+	<bean id="YJAS008Action" class="com.yja.action.YJAS008Action">
+		<property name="yjaService" ref="YJAS008Service" />
+	</bean>
+
+	<!-- Set Service class -->
+	<bean id="AbsYJACommonService" class="com.yja.bo.AbsYJACommonService"
+		abstract="true">
+		<!-- The path to store the images of camp sites -->
+		<property name="sitePhotoPath" value="images/sitephoto/" />
+		<!-- The path to store the Map of camp -->
+		<property name="campMapPath" value="images/campmap/" />
+		<!-- The path to store the photos of gallery -->
+		<property name="galleryPhotoPath" value="images/galleryPhoto/" />
+	</bean>
+	<bean id="YJAS001Service" parent="AbsYJACommonService" class="com.yja.service.YJAS001Service">
+	</bean>
+	<bean id="YJAS002Service" parent="AbsYJACommonService" class="com.yja.service.YJAS002Service">
+		<property name="yjaDao" ref="YJAS002DAO" />
+	</bean>
+	<bean id="YJAS003Service" parent="AbsYJACommonService" class="com.yja.service.YJAS003Service">
+		<property name="yjaDao" ref="YJAS003DAO" />
+	</bean>
+	<bean id="YJAS004Service" parent="AbsYJACommonService" class="com.yja.service.YJAS004Service">
+		<property name="yjaDao" ref="YJAS004DAO" />
+	</bean>
+	<bean id="YJAS005Service" parent="AbsYJACommonService" class="com.yja.service.YJAS005Service">
+		<property name="yjaDao" ref="YJAS005DAO" />
+	</bean>
+	<bean id="YJAS006Service" parent="AbsYJACommonService" class="com.yja.service.YJAS006Service">
+		<property name="mail" ref="mailSender" />
+		<property name="msg" ref="mailMessage" />
+	</bean>
+	<bean id="YJAS007Service" parent="AbsYJACommonService" class="com.yja.service.YJAS007Service">
+		<property name="yjaDao" ref="YJAS007DAO" />
+	</bean>
+	<bean id="YJAS008Service" parent="AbsYJACommonService" class="com.yja.service.YJAS008Service">
+		<property name="yjaDao" ref="YJAS008DAO" />
+	</bean>
+	<bean id="YJAP001Service" parent="AbsYJACommonService" class="com.yja.service.YJAP001Service">
+		<property name="yjaDao" ref="YJAP001DAO" />
+	</bean>
+
+	<!-- Mail service -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="your ID" />
+		<property name="password" value="your password" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">false</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Mail message -->
+	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="to">
+			<value>dudwo88@gmail.com</value>
+		</property>
+		<property name="subject" value="[YJAFAMILY] Contact From Customer" />
+	</bean>
+
+	<!-- Set DAO class -->
+	<bean id="AbsYJACommonDAO" class="com.yja.dao.AbsYJACommonDAO"
+		abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="YJAS002DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS002DAO">
+	</bean>
+	<bean id="YJAS003DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS003DAO">
+	</bean>
+	<bean id="YJAS004DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS004DAO">
+	</bean>
+	<bean id="YJAS005DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS005DAO">
+	</bean>
+	<bean id="YJAS007DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS007DAO">
+	</bean>
+	<bean id="YJAS008DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAS008DAO">
+	</bean>
+	<bean id="YJAP001DAO" parent="AbsYJACommonDAO" class="com.yja.dao.YJAP001DAO">
+	</bean>
+</beans>
