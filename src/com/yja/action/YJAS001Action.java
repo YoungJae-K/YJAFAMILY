@@ -32,7 +32,8 @@ public class YJAS001Action extends AbsYJACommonAction {
 	 * @see com.yja.action.AbsYJACommonAction#execute()
 	 */
 	@Override
-	public String initExecute() throws Exception {		
+	public String initExecute() throws Exception {	
+		//TODO:Test
 		//Remove the unnecessary session information
 		yjaService.removeSessionInfo();
 		yjaService.view(null);
