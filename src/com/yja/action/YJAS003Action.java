@@ -34,7 +34,6 @@ public class YJAS003Action extends AbsYJACommonAction {
 	@Override
 	public String initExecute() throws Exception {		
 		//Remove the unnecessary session information
-		//Uses super view()
 		yjaService.removeSessionInfo();		
 		yjaService.view(EXECUTE_FLG_INIT);
 		return FORWARD_SUCCESS;
